@@ -1,4 +1,4 @@
-package nuevo;
+package com.ar.cet002.comprasLita;
 
 /**
  *
