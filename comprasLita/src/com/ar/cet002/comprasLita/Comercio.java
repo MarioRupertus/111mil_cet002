@@ -5,7 +5,9 @@
  */
 package com.ar.cet002.comprasLita;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 /**
@@ -18,6 +20,8 @@ public class Comercio {
     private Nodo ubicacion;
     private String duenio;
     private Date horario;
+    private int horarioApertura;
+    private int horarioCierre;
     private int calificacionPositiva;
     private int calificacionNegativa;
 
@@ -69,7 +73,23 @@ public class Comercio {
         this.calificacionNegativa = calificacionNegativa;
     }
     
+     public Comercio(int horarioApertura, int horarioCierre) {
+        this.horarioApertura = horarioApertura;
+        this.horarioCierre = horarioCierre;
+    }
+
+    
+      public void saberSiEstaAbierto(int horaApertura,int horaCierre ) {
+        Calendar fecha = new GregorianCalendar();   
+        int horaActual = fecha.get(Calendar.HOUR_OF_DAY);
+        
+        if ((horaActual) >= (horaApertura) && (horaActual) <= (horaCierre)) {
+            System.out.println("Abierto");
+        } else {
+            System.out.println("Cerrado");
+        }
+        
     
     
-    
+}
 }
