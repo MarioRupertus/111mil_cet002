@@ -27,9 +27,20 @@ public class Carrito {
     public void eliminarProducto(Producto p){
         listaDeProductos.remove(p);
     }
+    public void eliminarProducto(int i){
+        listaDeProductos.remove(i);
+    }
     
     public void eliminarCarrito(){
         listaDeProductos.clear();
+    }
+
+    public List<Producto> getListaDeProductos() {
+        return listaDeProductos;
+    }
+
+    public void setListaDeProductos(List<Producto> listaDeProductos) {
+        this.listaDeProductos = listaDeProductos;
     }
     
     

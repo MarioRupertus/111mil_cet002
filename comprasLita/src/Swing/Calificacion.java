@@ -3,8 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyectoswing;
-
+package Swing;
+import com.ar.cet002.comprasLita.*;
 /**
  *
  * @author User

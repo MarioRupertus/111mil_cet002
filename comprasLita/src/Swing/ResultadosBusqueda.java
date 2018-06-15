@@ -3,8 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyectoswing;
-
+package Swing;
+import com.ar.cet002.comprasLita.*;
 /**
  *
  * @author User
@@ -214,7 +214,7 @@ public class ResultadosBusqueda extends javax.swing.JFrame {
     }//GEN-LAST:event_textoResultadosActionPerformed
 
     private void botonIrCarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIrCarritoActionPerformed
-        Carrito c = new Carrito();
+        Carro c = new Carro();
         c.setVisible(true);
         this.dispose(); 
     }//GEN-LAST:event_botonIrCarritoActionPerformed

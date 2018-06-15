@@ -3,19 +3,35 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyectoswing;
+package Swing;
+
+import javax.swing.*;
+import com.ar.cet002.comprasLita.*;
 
 /**
  *
  * @author User
  */
-public class Carrito extends javax.swing.JFrame {
+public class Carro extends javax.swing.JFrame {
+
+    private DefaultListModel<String> dlm = new DefaultListModel<>(); //Esto es la lista que contiene los productos del carrito (Sus nombres)
+    private Carrito carro;
 
     /**
-     * Creates new form 
+     * Creates new form
      */
-    public Carrito() {
+    public Carro() {
         initComponents();
+
+    }
+
+    public Carro(Carrito carro) {
+        this();
+        this.carro = carro;
+        precio.setText(calcularPrecio());
+        iniciarLista(carro);
+        this.setVisible(true);
+
     }
 
     /**
@@ -34,13 +50,13 @@ public class Carrito extends javax.swing.JFrame {
         jRadioButton2 = new javax.swing.JRadioButton();
         textoCarro = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        listaProductos = new javax.swing.JList<>();
+        botonEliminar = new javax.swing.JButton();
+        mostrarRecorrido = new javax.swing.JButton();
         jTextField3 = new javax.swing.JTextField();
         jCheckBox1 = new javax.swing.JCheckBox();
         jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
+        precio = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setFocusable(false);
@@ -58,11 +74,6 @@ public class Carrito extends javax.swing.JFrame {
         jTextField2.setText(" Medio de transporte:");
         jTextField2.setBorder(null);
         jTextField2.setFocusable(false);
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
-            }
-        });
 
         jRadioButton1.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup1.add(jRadioButton1);
@@ -81,26 +92,20 @@ public class Carrito extends javax.swing.JFrame {
         textoCarro.setText("Carro de compras:");
         textoCarro.setBorder(null);
         textoCarro.setFocusable(false);
-        textoCarro.addActionListener(new java.awt.event.ActionListener() {
+
+        listaProductos.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        listaProductos.setModel(dlm);
+        jScrollPane1.setViewportView(listaProductos);
+
+        botonEliminar.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        botonEliminar.setText("Eliminar producto del carro");
+        botonEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textoCarroActionPerformed(evt);
+                botonEliminarActionPerformed(evt);
             }
         });
 
-        jList1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(jList1);
-
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectoswing/imagenes/elimina3.png"))); // NOI18N
-        jButton1.setText("Eliminar producto del carro");
-
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectoswing/imagenes/recorrido.png"))); // NOI18N
-        jButton2.setText("Mostrar recorrido");
+        mostrarRecorrido.setText("Mostrar recorrido");
 
         jCheckBox1.setBackground(new java.awt.Color(255, 255, 255));
         jCheckBox1.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
@@ -112,9 +117,8 @@ public class Carrito extends javax.swing.JFrame {
         jTextField4.setToolTipText("");
         jTextField4.setBorder(null);
 
-        jTextField5.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
-        jTextField5.setText("$$$$");
-        jTextField5.setBorder(null);
+        precio.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
+        precio.setBorder(null);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -142,15 +146,15 @@ public class Carrito extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton1)
+                        .addComponent(botonEliminar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(precio, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(10, 10, 10))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addComponent(mostrarRecorrido)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -162,9 +166,9 @@ public class Carrito extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(botonEliminar)
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(precio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -178,8 +182,8 @@ public class Carrito extends javax.swing.JFrame {
                         .addComponent(jRadioButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jRadioButton2)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
+                .addComponent(mostrarRecorrido)
                 .addContainerGap())
         );
 
@@ -198,14 +202,25 @@ public class Carrito extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    private String calcularPrecio() {
+        double precio = 0;
+        for (int d = 0; d != carro.getListaDeProductos().size(); d++) {
+            precio = precio + carro.getListaDeProductos().get(d).getPrecio();
+        }
+        return String.valueOf(precio);
+    }
+    private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
+        int i = listaProductos.getSelectedIndex();
+        dlm.remove(i);
+        carro.eliminarProducto(i);
+        precio.setText(calcularPrecio());//Se actualiza el precio total del carrito
 
-    private void textoCarroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoCarroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textoCarroActionPerformed
-
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_botonEliminarActionPerformed
+    private void iniciarLista(Carrito a) {
+        for (int i = 0; i != a.getListaDeProductos().size(); i++) {
+            dlm.addElement(carro.getListaDeProductos().get(i).getNombre());
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -224,30 +239,29 @@ public class Carrito extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Carrito.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Carro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Carrito.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Carro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Carrito.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Carro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Carrito.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Carro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Carrito().setVisible(true);
+                new Carro().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonEliminar;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
@@ -255,7 +269,9 @@ public class Carrito extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
+    private javax.swing.JList<String> listaProductos;
+    private javax.swing.JButton mostrarRecorrido;
+    private javax.swing.JTextField precio;
     private javax.swing.JTextField textoCarro;
     // End of variables declaration//GEN-END:variables
 }
