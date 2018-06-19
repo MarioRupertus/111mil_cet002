@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class LitaDB {
     
-    private List<Producto> buscarProductoPorNombre(String nombre){
+    public List<Producto> buscarProductoPorNombre(String nombre){
         List<Producto> lista = new ArrayList<>();
         Comercio c1 = new Comercio(9, 18);
         Comercio c2 = new Comercio(9, 20);

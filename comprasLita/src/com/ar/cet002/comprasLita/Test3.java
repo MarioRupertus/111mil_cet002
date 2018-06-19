@@ -9,6 +9,8 @@ import java.util.Scanner;
 public class Test3 {
 
     public static void main(String args[]) {
+        
+        
 
         // Creo nodos
         Nodo A = new Nodo("A");

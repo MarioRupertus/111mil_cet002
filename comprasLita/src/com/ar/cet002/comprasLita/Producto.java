@@ -32,5 +32,12 @@ public class Producto {
     public Comercio getComercio() {
         return comercio;
     }
+
+    @Override
+    public String toString() {
+        return "Producto{" + "nombre=" + nombre + ", precio=" + precio + ", comercio=" + comercio + '}';
+    }
+    
+    
        
 }
