@@ -34,8 +34,8 @@ public class Recorrido {
     }
 
     private int[] calcularMapa(Nodo nodo) { //Calcula la distancia a todos los puntos
-        Dijkstra d = new Dijkstra();
-        int[] distancia = d.calcularDistTodos(nodo, this.mapa);
+        Dijkstra servicioDistancia = new Dijkstra();
+        int[] distancia = servicioDistancia.calcularDistTodos(nodo, this.mapa);
         return distancia;
     }
 
@@ -86,18 +86,18 @@ public class Recorrido {
     }
 
     private void almacenarRecorrido(List<Nodo> camino) {
-        int i = camino.size() - 1; //en "camino" los nodos se ordenan de final a inicio por lo tanto lo recorremos hacia atras y vamos agregando a la lista de recorrido total
+        int indice = camino.size() - 1; //en "camino" los nodos se ordenan de final a inicio por lo tanto lo recorremos hacia atras y vamos agregando a la lista de recorrido total
         int ultimo;
 
-        while (i >= 0) {
-            recorridoCompleto.add(camino.get(i));
+        while (indice >= 0) {
+            recorridoCompleto.add(camino.get(indice));
             ultimo = recorridoCompleto.size() - 1;
             if (recorridoCompleto.size() > 1) {
                 if (recorridoCompleto.get(ultimo).equals(recorridoCompleto.get(ultimo-1))) {
                     recorridoCompleto.remove(ultimo);
                 }
             }
-            i--;
+            indice--;
         }
         camino.clear();
     }
@@ -117,8 +117,8 @@ public class Recorrido {
     }
 
     private boolean isTodosVisitados() {
-        for (Nodo d : destinoIntermedio) {
-            if (!d.isVisitado()) {
+        for (Nodo actual : destinoIntermedio) {
+            if (!actual.isVisitado()) {
                 return false;
             }
         }
@@ -129,8 +129,8 @@ public class Recorrido {
         System.out.println("");
         System.out.println("Recorrido desde " + origen.getNombre() + " hasta " + destinoFinal.getNombre());
 
-        for (Nodo n : recorridoCompleto) {
-            System.out.print(n.getNombre() + " -> ");
+        for (Nodo actual : recorridoCompleto) {
+            System.out.print(actual.getNombre() + " -> ");
         }
 
     }
