@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.ar.cet002.comprasLita;
 
 import java.util.Calendar;
@@ -15,7 +10,7 @@ import java.util.List;
  * @author User
  */
 public class Comercio {
-    
+
     private List<Producto> listaDeProductos;
     private Nodo ubicacion;
     private String duenio;
@@ -72,24 +67,21 @@ public class Comercio {
     public void setCalificacionNegativa(int calificacionNegativa) {
         this.calificacionNegativa = calificacionNegativa;
     }
-    
-     public Comercio(int horarioApertura, int horarioCierre) {
+
+    public Comercio(int horarioApertura, int horarioCierre) {
         this.horarioApertura = horarioApertura;
         this.horarioCierre = horarioCierre;
     }
 
-    
-      public void saberSiEstaAbierto(int horaApertura,int horaCierre ) {
-        Calendar fecha = new GregorianCalendar();   
+    public void saberSiEstaAbierto(int horaApertura, int horaCierre) {
+        Calendar fecha = new GregorianCalendar();
         int horaActual = fecha.get(Calendar.HOUR_OF_DAY);
-        
+
         if ((horaActual) >= (horaApertura) && (horaActual) <= (horaCierre)) {
             System.out.println("Abierto");
         } else {
             System.out.println("Cerrado");
         }
-        
-    
-    
-}
+
+    }
 }

@@ -93,7 +93,7 @@ public class Recorrido {
             recorridoCompleto.add(camino.get(indice));
             ultimo = recorridoCompleto.size() - 1;
             if (recorridoCompleto.size() > 1) {
-                if (recorridoCompleto.get(ultimo).equals(recorridoCompleto.get(ultimo-1))) {
+                if (recorridoCompleto.get(ultimo).equals(recorridoCompleto.get(ultimo - 1))) {
                     recorridoCompleto.remove(ultimo);
                 }
             }
@@ -104,7 +104,7 @@ public class Recorrido {
 
     private Nodo buscarNodoCercano() {
         int posMin = 0;
-        while (destinoIntermedio.get(posMin).isVisitado()){
+        while (destinoIntermedio.get(posMin).isVisitado()) {
             posMin++;
         }
         for (int i = 0; i < destinoIntermedio.size(); i++) {

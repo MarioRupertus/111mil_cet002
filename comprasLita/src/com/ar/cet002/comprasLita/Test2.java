@@ -1,6 +1,6 @@
 package com.ar.cet002.comprasLita;
 
-import java.util.Scanner;
+//import java.util.Scanner;
 
 /**
  *
@@ -37,53 +37,52 @@ public class Test2 {
         mapa.agregarNodo(J);
 
         // Defino vecinos de cada nodo
-        
         // Ver porque se rompe la ejecucion si los vecinos se agregran en orden diferente al que fueron agregados al mapa. En este ejemplo, si no agregamos los vecinos en orden alfabetico, falla la ejecucion.
         A.agregarVecino(new Proximos(B, 2));
         A.agregarVecino(new Proximos(C, 3));
         A.agregarVecino(new Proximos(D, 1));
-        
+
         B.agregarVecino(new Proximos(A, 2));
         B.agregarVecino(new Proximos(E, 6));
         B.agregarVecino(new Proximos(G, 8));
-        
+
         C.agregarVecino(new Proximos(A, 3));
         C.agregarVecino(new Proximos(D, 2));
         C.agregarVecino(new Proximos(E, 6));
         C.agregarVecino(new Proximos(F, 4));
         C.agregarVecino(new Proximos(H, 1));
-        
+
         D.agregarVecino(new Proximos(A, 1));
         D.agregarVecino(new Proximos(C, 2));
         D.agregarVecino(new Proximos(E, 5));
-        
+
         E.agregarVecino(new Proximos(B, 6));
         E.agregarVecino(new Proximos(C, 6));
         E.agregarVecino(new Proximos(F, 10));
         E.agregarVecino(new Proximos(G, 1));
-                
+
         F.agregarVecino(new Proximos(C, 4));
         F.agregarVecino(new Proximos(E, 10));
         F.agregarVecino(new Proximos(G, 4));
         F.agregarVecino(new Proximos(H, 1));
         F.agregarVecino(new Proximos(I, 1));
-        
+
         G.agregarVecino(new Proximos(B, 8));
         G.agregarVecino(new Proximos(E, 1));
         G.agregarVecino(new Proximos(F, 4));
         G.agregarVecino(new Proximos(I, 2));
-        
+
         H.agregarVecino(new Proximos(C, 1));
         H.agregarVecino(new Proximos(F, 1));
         H.agregarVecino(new Proximos(J, 3));
-        
+
         I.agregarVecino(new Proximos(F, 1));
         I.agregarVecino(new Proximos(G, 2));
         I.agregarVecino(new Proximos(J, 4));
-        
+
         J.agregarVecino(new Proximos(H, 3));
         J.agregarVecino(new Proximos(I, 4));
-                
+
         Recorrido r = new Recorrido(mapa);
         r.setOrigen(E);
         r.agregarDestino(C);

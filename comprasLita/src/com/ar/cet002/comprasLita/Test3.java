@@ -1,6 +1,6 @@
 package com.ar.cet002.comprasLita;
 
-import java.util.Scanner;
+//import java.util.Scanner;
 
 /**
  *
@@ -9,8 +9,6 @@ import java.util.Scanner;
 public class Test3 {
 
     public static void main(String args[]) {
-        
-        
 
         // Creo nodos
         Nodo A = new Nodo("A");
@@ -34,8 +32,6 @@ public class Test3 {
         Nodo S = new Nodo("S");
         Nodo T = new Nodo("T");
         Nodo U = new Nodo("U");
-        
-        
 
         // Creo mapa y agrego nodos
         Mapa mapa = new Mapa();
@@ -63,7 +59,6 @@ public class Test3 {
         mapa.agregarNodo(U);
 
         // Defino vecinos de cada nodo
-        
         // Ver porque se rompe la ejecucion si los vecinos se agregran en orden diferente al que fueron agregados al mapa. En este ejemplo, si no agregamos los vecinos en orden alfabetico, falla la ejecucion.
         A.agregarVecino(new Proximos(B, 100));
         B.agregarVecino(new Proximos(A, 100));
@@ -78,7 +73,7 @@ public class Test3 {
         B.agregarVecino(new Proximos(J, 100));
         J.agregarVecino(new Proximos(B, 100));
         D.agregarVecino(new Proximos(M, 100));
-        M.agregarVecino(new Proximos(D, 100));              
+        M.agregarVecino(new Proximos(D, 100));
         J.agregarVecino(new Proximos(E, 100));
         E.agregarVecino(new Proximos(J, 100));
         E.agregarVecino(new Proximos(K, 100));
@@ -87,14 +82,14 @@ public class Test3 {
         C.agregarVecino(new Proximos(N, 100));
         C.agregarVecino(new Proximos(M, 100));
         M.agregarVecino(new Proximos(C, 100));
-               
+
         D.agregarVecino(new Proximos(L, 80));
         L.agregarVecino(new Proximos(D, 80));
         K.agregarVecino(new Proximos(L, 80));
         L.agregarVecino(new Proximos(K, 80));
         L.agregarVecino(new Proximos(G, 80));
         G.agregarVecino(new Proximos(L, 80));
-        
+
         J.agregarVecino(new Proximos(F, 75));
         F.agregarVecino(new Proximos(J, 75));
         F.agregarVecino(new Proximos(A, 75));
@@ -127,7 +122,7 @@ public class Test3 {
         D.agregarVecino(new Proximos(H, 75));
         H.agregarVecino(new Proximos(M, 75));
         M.agregarVecino(new Proximos(H, 75));
-        
+
         S.agregarVecino(new Proximos(J, 60));
         J.agregarVecino(new Proximos(S, 60));
         S.agregarVecino(new Proximos(B, 60));
@@ -170,7 +165,7 @@ public class Test3 {
         G.agregarVecino(new Proximos(U, 60));
         U.agregarVecino(new Proximos(K, 60));
         K.agregarVecino(new Proximos(U, 60));
-                        
+
         Recorrido r = new Recorrido(mapa);
         r.setOrigen(O);
         r.agregarDestino(L);
@@ -184,4 +179,3 @@ public class Test3 {
     }
 
 }
-

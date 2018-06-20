@@ -5,7 +5,7 @@ package com.ar.cet002.comprasLita;
  * @author Maxi
  */
 public class Proximos {
-    
+
     private Nodo nodoVecino;
     private int costo;
 
@@ -29,9 +29,5 @@ public class Proximos {
     public void setCosto(int costo) {
         this.costo = costo;
     }
-    
-    
-    
-    
-    
+
 }

@@ -8,7 +8,7 @@ public class Dijkstra { // CONVIENE HACERLO STATIC?
 
     private int[] distancia; // Se usará para almacenar la distancia del origen hasta todos los restantes puntos. Las posiciones son iguales a la lista de mapa
     private boolean[] flag; // Se usará para almacenar si los nodos fueron visitados
-    
+
     public int[] calcularDistTodos(Nodo origen, Mapa mapa) {
         System.out.println("COMENZANDO DIJKSTRA");
         reiniciarPesoAcumulado(mapa); // pone en cero los pesos acumulados porque si antes se habia ejecutado otro dijkstra, los nodos van a tener los valores de la consulta anterior
@@ -59,7 +59,7 @@ public class Dijkstra { // CONVIENE HACERLO STATIC?
                 System.out.print("El vecino " + mapa.getMapa().get(k).getNombre() + " se encuentra en la posicion " + k + "... ");
 
                 // Comparo DISTANCIA con nuevo recorrido
-                System.out.print("Comparo peso acumulado nodo actual " + nodoActual.getPesoAcumulado() +" + costo al vecino " + p.getCosto() + " vs distancia temporal al vecino " + distancia[k] + "... ");
+                System.out.print("Comparo peso acumulado nodo actual " + nodoActual.getPesoAcumulado() + " + costo al vecino " + p.getCosto() + " vs distancia temporal al vecino " + distancia[k] + "... ");
                 if ((nodoActual.getPesoAcumulado() + p.getCosto()) <= distancia[k]) { //si la nueva distancia es menor VERSION DOS AGREGO MENOR O IGUAL
                     System.out.print("Menor o igual distancia encontrada --> Se guarda en vector distancia y en atributo pesoAcumulado");
                     distancia[k] = (nodoActual.getPesoAcumulado() + p.getCosto()); // guarda la nueva distancia
@@ -78,12 +78,12 @@ public class Dijkstra { // CONVIENE HACERLO STATIC?
         return distancia;
     }
 
-    private void reiniciarPesoAcumulado(Mapa mapa){
-        for (Nodo n : mapa.getMapa()){
+    private void reiniciarPesoAcumulado(Mapa mapa) {
+        for (Nodo n : mapa.getMapa()) {
             n.setPesoAcumulado(0);
         }
     }
-    
+
     private void iniciarFlag(Mapa mapa) {
         System.out.println("");
         System.out.println("INICIANDO FLAG");
@@ -128,7 +128,7 @@ public class Dijkstra { // CONVIENE HACERLO STATIC?
         }
         imprimirDistancia();
     }
-    
+
     private boolean isTodosVisitados() {
         System.out.println("");
         System.out.print("Chequeando si estan todos los nodos visitados... resultado: ");
@@ -170,14 +170,14 @@ public class Dijkstra { // CONVIENE HACERLO STATIC?
         }
         System.out.println("");
     }
-    
-    private void imprimirPesoAcumulado(Mapa mapa){
+
+    private void imprimirPesoAcumulado(Mapa mapa) {
         System.out.print("Peso acumulado ");
-        for (Nodo n : mapa.getMapa()){
-            System.out.print("| "+n.getPesoAcumulado());
+        for (Nodo n : mapa.getMapa()) {
+            System.out.print("| " + n.getPesoAcumulado());
         }
     }
-    
+
     public int[] getDistancia() {
         return distancia;
     }
